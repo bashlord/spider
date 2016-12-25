@@ -11,14 +11,11 @@ def crawl():
 	comclass = []
 	type = []
 
-	response,homepage  = call_login("cooliok3@hotmail.com", "jwk020")
+	response,homepage  = call_login("", "")
 	plain_text = homepage.text
 	soup = BeautifulSoup(plain_text)
-	print "Homepage plaintext:"
-	print ""
-	print ""
 	print plain_text
-	for comment in soup.findAll('div',{'role':'article'}):
+	for comment in soup.findAll('',{'':''}):
 		print comment
 		print "children"
 		for c in comment.children:
@@ -31,22 +28,21 @@ def crawl():
 			else:
 				type.append(str[1])
 			com.append(str)
-		print "findall"
 		for ahref in comment.findAll('a'):
-			ah = ahref.get('href')
+			ah = ahref.get('')
 			print ah
 			ah1 = ah.split('?')
 			uid.append(ah1[0])
 			break
 		print ""
 		print ""
-		for h3 in comment.findAll('h3'):
-			h3id = h3.get('class');
+		for h3 in comment.findAll(''):
+			h3id = h3.get('');
 			print h3id
 			comclass.append(h3id[0]+h3id[1])
 
 	for i in range(0,len(uid)):
-		requests.post('http://jjkbashlord.com/crawl/add.php', data={
+		requests.post('', data={
 															'p1': uid[i],
 															'p01': uname[i],
 															'p2': com[i],
